@@ -1,4 +1,387 @@
-<section id="video-presentasi">
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Makalah Manajemen File - Sistem Operasi</title>
+    <style>
+       
+        :root {
+            --primary-color: #fc6fa9; 
+            --secondary-color: #9090d8; 
+            --accent-color: #fcabd7; 
+            --text-color: #151516;
+            --bg-light: #f7f7f7;
+            --bg-dark: #212529; 
+            --card-bg: #ffffff;
+            --border-color: #dee2e6;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            line-height: 1.1;
+            margin: 0;
+            padding: 0;
+            background-color: var(--bg-light);
+            color: var(--text-color);
+            scroll-behavior: smooth;
+        }
+
+        /* Utility Classes */
+        .container {
+            max-width: 900px; /* Slightly narrower for makalah feel */
+            margin: 0 auto;
+            padding: 0 25px; /* More padding */
+        }
+
+        /* Header / Cover Page */
+        header {
+            background-color: var(--primary-color);
+            color: rgb(243, 243, 248);
+            padding: 5rem 0; /* More vertical space */
+            text-align: center;
+            box-shadow: 0 6px 12px rgba(228, 215, 243, 0.1);
+            margin-bottom: 20px;
+        }
+
+        header h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5em; /* Larger title */
+            margin-bottom: 15px;
+            letter-spacing: 1.5px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        header p {
+            font-size: 1.3em;
+            opacity: 0.95;
+            margin-bottom: 5px;
+        }
+
+        header .author {
+            font-size: 1.1em;
+            font-weight: 300;
+        }
+
+        /* Navigation / Table of Contents */
+        nav {
+            background-color: var(--secondary-color);
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        nav ul li {
+            margin: 0 12px; /* Slightly less margin */
+            padding: 5px 0;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            padding: 10px 15px; /* More padding */
+            border-radius: 5px;
+            transition: background-color 0.3s ease, color 0.3s ease, transform 0.2s ease;
+            display: block; /* Make the whole area clickable */
+        }
+
+        nav ul li a:hover,
+        nav ul li a.active {
+            background-color: var(--accent-color); /* Highlight with accent color */
+            color: white;
+            transform: translateY(-2px); /* Slight lift effect */
+        }
+
+        /* Main Content Sections */
+        main {
+            padding: 40px 0;
+        }
+
+        section {
+            background-color: var(--card-bg);
+            margin-bottom: 35px; /* More space between sections */
+            padding: 35px; /* More padding */
+            border-radius: 10px; /* More rounded corners */
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08); /* Stronger shadow */
+            border: 1px solid var(--border-color);
+        }
+
+        section h2 {
+            font-family: 'Playfair Display', serif;
+            color: var(--primary-color);
+            font-size: 2.2em;
+            margin-top: 0;
+            margin-bottom: 30px; /* More space below heading */
+            position: relative;
+            padding-bottom: 12px;
+            text-align: center; /* Center section headings */
+        }
+
+        section h2::after {
+            content: '';
+            position: absolute;
+            left: 50%; /* Center the underline */
+            transform: translateX(-50%);
+            bottom: 0;
+            width: 80px; /* Wider underline */
+            height: 4px; /* Thicker underline */
+            background-color: var(--accent-color);
+            border-radius: 2px;
+        }
+
+        section h3 {
+            font-family: 'Playfair Display', serif;
+            color: var(--secondary-color);
+            font-size: 1.6em;
+            margin-top: 30px;
+            margin-bottom: 20px;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 8px;
+        }
+
+        section p {
+            margin-bottom: 18px;
+            font-size: 1.05em;
+            text-align: justify; /* Justify text for makalah feel */
+        }
+
+        section ol, section ul {
+            margin-left: 30px; /* Indent lists more */
+            padding-left: 0;
+            margin-bottom: 25px;
+        }
+
+        section ol li, section ul li {
+            margin-bottom: 10px;
+        }
+
+        /* Video Section */
+        .video-container {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+            height: 0;
+            overflow: hidden;
+            background-color: #000;
+            border-radius: 10px; /* Matches section border-radius */
+            margin-top: 25px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Shadow for video */
+        }
+
+        .video-container video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        .note {
+            font-style: italic;
+            color: #6c757d;
+            text-align: center;
+            margin-top: 20px;
+            font-size: 0.95em;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--bg-dark);
+            color: white;
+            text-align: center;
+            padding: 30px 0;
+            margin-top: 50px;
+            font-size: 0.9em;
+            box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            header {
+                padding: 3rem 0;
+            }
+            header h1 {
+                font-size: 2.9em;
+            }
+            header p {
+                font-size: 1.1em;
+            }
+            nav ul li {
+                margin: 0 8px;
+            }
+            nav ul li a {
+                padding: 8px 12px;
+                font-size: 0.95em;
+            }
+            section {
+                padding: 25px;
+            }
+            section h2 {
+                font-size: 1.8em;
+            }
+            section h3 {
+                font-size: 1.4em;
+            }
+        }
+
+        @media (max-width: 480px) {
+            header h1 {
+                font-size: 2.2em;
+            }
+            header p {
+                font-size: 1em;
+            }
+            nav ul {
+                flex-direction: column;
+                align-items: center;
+            }
+            nav ul li {
+                margin: 5px 0;
+            }
+            section {
+                padding: 20px;
+            }
+            section h2 {
+                font-size: 1.6em;
+            }
+            section h3 {
+                font-size: 1.2em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>MAKALAH</h1>
+            <p>MANAJEMEN FILE </p>
+            <p class="author">Disusun Oleh:</p> 
+            <p class="author">Kelompok 4</p>
+            <p class="author">Sri Utami M. Nani, Sry Juniarty</p>
+            <p class="author">Mohamad S. Ibrahim, Abdul Hafiz R. Abudi</p>
+        </div>
+    </header>
+
+    <nav>
+        <div class="container">
+            <ul>
+                <li><a href="#pendahuluan">Pendahuluan</a></li>
+                <li><a href="#isi-makalah">Isi Makalah</a></li>
+                <li><a href="#kesimpulan">Kesimpulan</a></li>
+                <li><a href="#daftar-pustaka">Daftar Pustaka</a></li>
+                <li><a href="#video-presentasi">Video</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="container">
+        <section id="pendahuluan">
+            <h2>Pendahuluan</h2>
+            <h3>Latar Belakang</h3>
+            <p>Dalam era digital saat ini, komputer telah menjadi bagian tak terpisahkan dari kehidupan sehari-hari, baik untuk keperluan personal, profesional, maupun akademis. Salah satu komponen krusial yang memungkinkan komputer berfungsi secara efisien adalah sistem operasi. Sistem operasi bertanggung jawab untuk mengelola semua sumber daya perangkat keras dan lunak, serta menyediakan antarmuka bagi pengguna untuk berinteraksi dengan komputer. Dari berbagai aspek manajemen yang dilakukan oleh sistem operasi, manajemen file memegang peranan yang sangat fundamental. File merupakan unit dasar penyimpanan informasi, dan tanpa pengelolaan file yang baik, data akan sulit ditemukan, diakses, atau bahkan hilang.</p>
+            <p>Manajemen file tidak hanya mencakup penyimpanan data, tetapi juga organisasi, akses, proteksi, dan pemeliharaan. Seiring dengan perkembangan teknologi informasi, volume data yang dihasilkan terus meningkat secara eksponensial, menuntut sistem manajemen file yang semakin canggih, efisien, dan aman. Oleh karena itu, pemahaman mendalam tentang konsep, struktur, metode akses, dan proteksi file dalam sistem operasi menjadi esensial bagi siapa saja yang berinteraksi dengan komputer.</p>
+
+            <h3>Rumusan Masalah</h3>
+            <ol>
+                <li>Apa yang dimaksud dengan konsep file dalam sistem operasi?</li>
+                <li>Bagaimana sistem file mengorganisir dan mengelola data?</li>
+                <li>Metode akses apa saja yang digunakan untuk berinteraksi dengan file?</li>
+                <li>Bagaimana struktur direktori membantu dalam organisasi file?</li>
+                <li>Bagaimana mekanisme proteksi file bekerja untuk menjaga keamanan data?</li>
+            </ol>
+
+            <h3>Tujuan Penulisan</h3>
+            <p>Makalah ini bertujuan untuk:</p>
+            <ol>
+                <li>Memahami definisi dan jenis-jenis file dalam konteks sistem operasi.</li>
+                <li>Menjelaskan peran dan komponen utama sistem file.</li>
+                <li>Mengidentifikasi dan menjelaskan berbagai metode akses file.</li>
+                <li>Menganalisis berbagai jenis struktur direktori.</li>
+                <li>Mendeskripsikan mekanisme proteksi file yang diterapkan dalam sistem operasi.</li>
+            </ol>
+        </section>
+
+        <section id="isi-makalah">
+            <h2>Isi Makalah</h2>
+            <p>Bagian ini akan membahas secara rinci mengenai konsep-konsep kunci dalam manajemen file, sesuai dengan poin-poin yang telah dirumuskan.</p>
+
+            <h3>A. Konsep File</h3>
+            <p>File adalah entitas dasar dalam sistem penyimpanan komputer yang terdiri dari sekumpulan data yang disusun dan disimpan dalam unit yang terstruktur. Dalam sistem operasi, file digunakan untuk menyimpan berbagai jenis informasi seperti teks, gambar, video, atau program aplikasi. Setiap file diidentifikasi dengan nama file yang unik di dalam sistem, serta atribut seperti ukuran, waktu pembuatan, dan hak akses. Sistem operasi bertugas untuk memastikan file tersebut dapat dibuat, dibaca, dimodifikasi, atau dihapus sesuai dengan perintah pengguna. File dapat dibagi menjadi beberapa jenis, seperti (Silberschatz, A., Galvin, P. B., & Gagne, 2018):</p>
+            <ol>
+                <li><p><strong>File Teks:</strong> Berisi data dalam bentuk karakter yang dapat dibaca oleh manusia (misalnya file teks .txt).</p></li>
+                <li><p><strong>File Biner:</strong> Berisi data dalam format yang tidak dapat dibaca manusia secara langsung dan membutuhkan aplikasi tertentu untuk membacanya (misalnya file .exe atau .jpg).</p></li>
+                <li><p><strong>File Eksekusi:</strong> Berisi instruksi-instruksi program yang dapat dijalankan langsung oleh komputer.</p></li>
+            </ol>
+
+            <h3>B. Sistem File</h3>
+            <p>Sistem file adalah metode yang digunakan oleh sistem operasi untuk mengorganisir dan mengelola data yang disimpan dalam perangkat penyimpanan. Sistem file mengatur cara penyimpanan, pengambilan, dan pengelolaan data yang ada di dalam media penyimpanan (seperti hard disk, SSD, atau cloud storage). Beberapa komponen utama dalam sistem file adalah (Tanenbaum, A. S. & Bos, 2015):</p>
+            <ol>
+                <li><p><strong>Metadata:</strong> Informasi yang menggambarkan atribut file, seperti nama file, ukuran, hak akses, dan waktu pembuatan.</p></li>
+                <li><p><strong>Blok Penyimpanan:</strong> Unit terkecil tempat data disimpan dalam media penyimpanan.</p></li>
+                <li><p><strong>Inode:</strong> Struktur data yang digunakan oleh sistem file untuk menyimpan metadata tentang file.</p></li>
+            </ol>
+            <p>Jenis sistem file yang paling umum digunakan antara lain (Stallings, 2018):</p>
+            <ol start="1">
+                <li><p><strong>FAT (File Allocation Table):</strong> Sistem file yang digunakan pada perangkat penyimpanan seperti flash disk dan kartu memori.</p></li>
+                <li><p><strong>NTFS (New Technology File System):</strong> Sistem file yang digunakan oleh sistem operasi Windows, menawarkan fitur seperti pengelolaan hak akses dan kompresi file.</p></li>
+                <li><p><strong>ext4:</strong> Sistem file yang digunakan oleh banyak distribusi Linux, menawarkan performa dan stabilitas yang baik.</p></li>
+                <li><p><strong>HFS+ (Hierarchical File System Plus):</strong> Sistem file yang digunakan pada perangkat Apple.</p></li>
+            </ol>
+
+            <h3>C. Metode Akses</h3>
+            <p>Metode akses adalah cara di mana data di dalam file dapat diakses atau dimodifikasi oleh aplikasi atau pengguna. Ada beberapa metode akses yang umum digunakan dalam sistem file (Stallings, 2018):</p>
+            <ol>
+                <li><p><strong>Akses Sekuensial:</strong> Data dibaca atau ditulis secara berurutan, dimulai dari awal hingga akhir file. Ini berarti proses membaca atau menulis hanya dapat dilakukan secara linear tanpa melompati bagian-bagian tertentu dari file. Digunakan untuk file seperti log atau file multimedia di mana data harus diproses dalam urutan tertentu.</p></li>
+                <li><p><strong>Akses Langsung:</strong> Memungkinkan akses langsung ke lokasi tertentu dalam file tanpa harus memproses data secara berurutan. Ini sering digunakan dalam aplikasi basis data atau sistem yang membutuhkan akses cepat dan efisien ke data tertentu. Contohnya, dalam sistem basis data atau aplikasi pengolahan gambar.</p></li>
+                <li><p><strong>Akses Indeks:</strong> Sistem file menggunakan struktur indeks (seperti tabel hash atau pohon biner) untuk mempercepat pencarian dan akses ke data dalam file. Metode ini memungkinkan pencarian dan modifikasi data secara efisien karena sistem dapat langsung menuju posisi data menggunakan indeks.</p></li>
+            </ol>
+
+            <h3>D. Struktur Direktori</h3>
+            <p>Struktur direktori adalah organisasi file yang memungkinkan pengguna dan aplikasi untuk mengelompokkan file-file mereka dalam format yang mudah diakses dan dikelola. Dalam sistem file, direktori adalah struktur yang menyimpan informasi tentang file dan subdirektori. Ada dua jenis utama struktur direktori (Silberschatz et al., 2013):</p>
+            <ol>
+                <li><p><strong>Struktur Direktori Linear:</strong> Semua file dan subdirektori disusun secara linear dalam satu daftar. Pengguna dapat mencari file hanya dengan mengikuti urutan tertentu. Struktur ini lebih sederhana, tetapi kurang efisien untuk sistem dengan banyak file.</p></li>
+                <li><p><strong>Struktur Direktori Hierarkis:</strong> Direktori disusun dalam bentuk pohon (tree), di mana direktori utama (root) dapat memiliki subdirektori, dan subdirektori ini bisa memiliki subdirektori lebih lanjut. Pendekatan ini memungkinkan pengelompokan file dalam kategori atau jenis tertentu. Struktur ini lebih efisien dan fleksibel, terutama pada sistem yang menangani jumlah besar file.</p></li>
+            </ol>
+
+            <h3>E. Proteksi</h3>
+            <p>Proteksi file adalah mekanisme yang digunakan untuk melindungi file dari akses yang tidak sah atau perubahan yang tidak diinginkan. Proteksi ini sangat penting dalam konteks keamanan data dan privasi (Pangera & Ariyus, 2010). Ada beberapa metode proteksi file yang digunakan dalam sistem operasi (Stallings, 2011):</p>
+            <ol>
+                <li><p><strong>Kontrol Akses Berdasarkan Peran (RBAC):</strong> Dalam RBAC, hak akses diberikan berdasarkan peran pengguna dalam organisasi. Misalnya, seorang administrator mungkin memiliki akses penuh ke semua file, sementara pengguna biasa hanya memiliki akses untuk membaca file tertentu.</p></li>
+                <li><p><strong>Kontrol Akses Berdasarkan Daftar Kontrol Akses (ACL):</strong> Setiap file dan direktori memiliki daftar kontrol akses yang menentukan siapa yang memiliki izin untuk mengakses atau mengubah file tersebut. ACL memiliki izin yang lebih terperinci, misalnya hanya mengizinkan pengguna tertentu untuk mengedit file.</p></li>
+            </ol>
+        </section>
+
+        <section id="kesimpulan">
+            <h2>Kesimpulan</h2>
+            <p>Manajemen file merupakan fungsi esensial dalam sistem operasi yang memastikan data dapat disimpan, diakses, dan dilindungi secara efektif. Konsep file sebagai unit dasar informasi, sistem file sebagai metode pengorganisasian data, serta berbagai metode akses (sekuensial, langsung, indeks) memungkinkan pengguna dan aplikasi berinteraksi dengan data secara efisien.</p>
+            <p>Struktur direktori, baik linear maupun hierarkis, menyediakan kerangka kerja untuk mengorganisir file, dengan struktur hierarkis menjadi pilihan dominan karena skalabilitas dan kemudahannya. Terakhir, mekanisme proteksi file, seperti RBAC dan ACL, menjadi krusial untuk menjaga integritas, kerahasiaan, dan ketersediaan data dari akses yang tidak sah. Pemahaman yang komprehensif tentang aspek-aspek manajemen file ini sangat penting dalam pengembangan dan penggunaan sistem komputer yang stabil, aman, dan efisien.</p>
+        </section>
+
+        <section id="daftar-pustaka">
+            <h2>Daftar Pustaka</h2>
+            <ul>
+                <li>Pangera, A. D., & Ariyus, D. (2010). <em>Keamanan Komputer</em>. Yogyakarta: Penerbit Andi.</li>
+                <li>Silberschatz, A., Galvin, P. B., & Gagne, G. (2013). <em>Operating System Concepts (10th ed.)</em>. John Wiley & Sons.</li>
+                <li>Stallings, W. (2011). <em>Operating Systems: Internals and Design Principles (7th ed.)</em>. Pearson Education.</li>
+                <li>Tanenbaum, A. S., & Bos, H. (2015). <em>Modern Operating Systems (4th ed.)</em>. Pearson Education.</li>
+                <li>Stallings, W. (2018). <em>Computer Organization and Architecture: Designing for Performance (11th ed.)</em>. Pearson Education.</li>
+            </ul>
+        </section>
+
+        <section id="video-presentasi">
             <h2>Video Presentasi</h2>
             <p>Untuk penjelasan lebih mendalam dan interaktif, silakan saksikan video presentasi mengenai Manajemen File dalam Sistem Operasi di bawah ini:</p>
             <div class="video-container">
@@ -8,3 +391,86 @@
                 </video>
             </div>
         </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Makalah Manajemen File dalam Sistem Operasi.</p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Smooth scrolling for navigation links
+            document.querySelectorAll('nav a').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+
+                    const targetId = this.getAttribute('href');
+                    const targetElement = document.querySelector(targetId);
+
+                    if (targetElement) {
+                        // Calculate offset for sticky header
+                        const navHeight = document.querySelector('nav').offsetHeight;
+                        const elementPosition = targetElement.getBoundingClientRect().top + window.pageYOffset;
+                        const offsetPosition = elementPosition - navHeight - 30; // -30 for a little extra space
+
+                        window.scrollTo({
+                            top: offsetPosition,
+                            behavior: 'smooth'
+                        });
+
+                        // Optional: Close mobile menu if implemented
+                        // if (window.innerWidth <= 768) {
+                        //     // code to close menu
+                        // }
+                    }
+                });
+            });
+
+            // Set active class on scroll
+            const sections = document.querySelectorAll('main section');
+            const navLinks = document.querySelectorAll('nav a');
+
+            window.addEventListener('scroll', () => {
+                let currentActiveSectionId = '';
+
+                sections.forEach(section => {
+                    // Get position relative to the viewport, adjust for sticky nav
+                    const sectionTop = section.getBoundingClientRect().top + window.pageYOffset - document.querySelector('nav').offsetHeight - 50; // Add buffer
+                    const sectionBottom = sectionTop + section.offsetHeight;
+
+                    if (window.pageYOffset >= sectionTop && window.pageYOffset < sectionBottom) {
+                        currentActiveSectionId = section.getAttribute('id');
+                    }
+                });
+
+                navLinks.forEach(link => {
+                    link.classList.remove('active');
+                    if (link.getAttribute('href').includes(currentActiveSectionId)) {
+                        link.classList.add('active');
+                    }
+                });
+            });
+
+            // Set initial active class on page load for the first section if visible
+            const firstSection = document.querySelector('main section');
+            if (firstSection) {
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            const firstNavLink = document.querySelector(`nav a[href="#${entry.target.id}"]`);
+                            if (firstNavLink) {
+                                navLinks.forEach(link => link.classList.remove('active')); // Remove others first
+                                firstNavLink.classList.add('active');
+                            }
+                        }
+                    });
+                }, { rootMargin: `-${document.querySelector('nav').offsetHeight + 20}px 0px -50% 0px` }); // Adjust rootMargin based on nav height
+
+                observer.observe(firstSection);
+            }
+        });
+    </script>
+</body>
+</html>
